@@ -115,6 +115,10 @@ $vmResources | ForEach-Object { Write-Host $_.ResourceGroupName }
 # Confirm that the resources were moved (output should contain info on a couple resources)
 $vmResources = Get-AzResource -ResourceGroupName test0 -Name vm0
 $vmResources | ForEach-Object { Write-Host $_.ResourceGroupName }
+
+# Clean up all resources after this exercise is finished
+Remove-AzResourceGroup -Name test0 -Force
+Remove-AzResourceGroup -Name test1 -Force
 #>
 
 
