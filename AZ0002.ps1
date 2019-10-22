@@ -13,7 +13,12 @@ New-AzVM -ResourceGroupName test0 -Name vm0 -Image UbuntuLTS -Credential $cred
 $vmResources = Get-AzResource -ResourceGroupName test0 -Name vm0
 $vmResources | ForEach-Object { Write-Host $_.ResourceGroupName }
 
-# Initiate the move from the first resource group to the other
+<#
+- Initiate the move from the first resource group to the other
+- This move takes quite a long time
+- You can observe resources appearing in one resource group, and disappearing
+  from the previous resource group in real time through the Azure Portal
+#>
 $vmResources | ForEach-Object { Move-AzResource -DestinationResourceGroupName test1 -ResourceId $_.ResourceId -Force }
 
 # Confirm that the resources were moved (output should be blank)
